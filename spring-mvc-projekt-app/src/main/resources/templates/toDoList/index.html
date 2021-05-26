@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="pl">
+<head>
+  <meta charset="utf-8"/>
+  <title>Listy</title>
+</head>
+<body>
+<div align="center">
+  <h1>Lista list</h1>
+  <a href="/toDoList/new">Nowa lista</a>
+  <br/><br/>
+  <table border="1" cellpadding="10">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Nazwisko</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="toDoList : ${listToDoLists}">
+      <td th:text="${toDoList.id}">Id</td>
+      <td th:text="${toDoList.title}">Imię</td>
+      <td th:text="${toDoList.description}">Nazwisko</td>
+      <td th:text="${toDoList.listType}">Nazwisko</td>
+      <td>
+        <a th:href="@{'/toDoList/edit/' + ${toDoList.id}}">Edytuj</a>
+        <a th:href="@{'/toDoList/delete/' + ${toDoList.id}}">Usuń</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
