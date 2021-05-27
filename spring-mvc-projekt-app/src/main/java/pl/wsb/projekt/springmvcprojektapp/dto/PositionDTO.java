@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-public class ToDoListDTO {
+public class PositionDTO {
 
     @JsonProperty("id")
     private Integer id;
@@ -14,9 +14,6 @@ public class ToDoListDTO {
 
     @JsonProperty("description")
     private String description;
-
-    @JsonProperty("listType")
-    private String listType;
 
     @JsonProperty("created")
     private Date created;
@@ -46,14 +43,6 @@ public class ToDoListDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getListType() {
-        return listType;
-    }
-
-    public void setListType(String listType) {
-        this.listType = listType;
     }
 
     public Date getCreated() {

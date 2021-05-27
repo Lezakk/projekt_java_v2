@@ -4,28 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.wsb.projekt.springmvcprojektapp.dto.PositionDTO;
 import pl.wsb.projekt.springmvcprojektapp.dto.ToDoListDTO;
+import pl.wsb.projekt.springmvcprojektapp.mapper.PositionMapper;
 import pl.wsb.projekt.springmvcprojektapp.mapper.ToDoListMapper;
+import pl.wsb.projekt.springmvcprojektapp.model.Position;
 import pl.wsb.projekt.springmvcprojektapp.model.ToDoList;
+import pl.wsb.projekt.springmvcprojektapp.service.PositionService;
 import pl.wsb.projekt.springmvcprojektapp.service.ToDoListService;
 
 @CrossOrigin(origins = { "http://localhost:8080" })
 @RestController
-@RequestMapping("${url.prefix.api.v1}/toDoList")
-public class RestToDoListController {
+@RequestMapping("${url.prefix.api.v1}/position")
+public class RestPositionController {
 
     @Autowired
-    private ToDoListService toDoListService;
+    private PositionService positionService;
 
     @Autowired
-    private ToDoListMapper toDoListMapper;
+    private PositionMapper positionMapper;
 
     @GetMapping("/")
-    public ResponseEntity<Iterable<ToDoListDTO>> index() {
+    public ResponseEntity<Iterable<PositionDTO>> index() {
         try {
             return new ResponseEntity<>(
-                    toDoListMapper.map(
-                            toDoListService.listAll()
+                    positionMapper.map(
+                            positionService.listAll()
                     ),
                     HttpStatus.OK
             );
@@ -35,11 +39,11 @@ public class RestToDoListController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Void> createToDoList(@RequestBody ToDoListDTO toDoListDTO) {
+    public ResponseEntity<Void> createPosition(@RequestBody PositionDTO positionDTO) {
         try {
-            toDoListService.save(
-                    toDoListMapper.toDoListDTOToToDoList(
-                            toDoListDTO
+            positionService.save(
+                    positionMapper.positionDTOToPosition(
+                            positionDTO
                     )
             );
             return new ResponseEntity<>(null, HttpStatus.CREATED);
@@ -49,21 +53,21 @@ public class RestToDoListController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ToDoListDTO> updateToDoList(@PathVariable("id") Integer id,
-                                                @RequestBody ToDoListDTO toDoListDTO) {
+    public ResponseEntity<PositionDTO> updatePosition(@PathVariable("id") Integer id,
+                                                      @RequestBody PositionDTO positionDTO) {
         try {
-            ToDoList toDoListEntity = toDoListService.find(id);
-            if (toDoListEntity == null) {
+            Position positionEntity = positionService.find(id);
+            if (positionEntity == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } //if
-            toDoListService.save(
-                    toDoListMapper.toDoListDTOToToDoList(
-                            toDoListDTO
+            positionService.save(
+                    positionMapper.positionDTOToPosition(
+                            positionDTO
                     )
             );
             return new ResponseEntity<>(
-                    toDoListMapper.toDoListToToDoListDTO(
-                            toDoListEntity
+                    positionMapper.toDoListToToDoListDTO(
+                            positionEntity
                     ),
                     HttpStatus.OK
             );
@@ -73,18 +77,16 @@ public class RestToDoListController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteToDoList(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> deletePosition(@PathVariable("id") Integer id) {
         try {
-            ToDoList toDoListEntity = toDoListService.find(id);
-            if (toDoListEntity == null) {
+            Position positionEntity = positionService.find(id);
+            if (positionEntity == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } //if
-            toDoListService.delete(id);
+            positionService.delete(id);
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 }
