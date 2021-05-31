@@ -1,39 +1,44 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/main_layout.html}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       lang="pl">
-<head>
-  <meta charset="utf-8"/>
-  <title>Listy</title>
-</head>
-<body>
-<div align="center">
-  <h1>Lista list</h1>
-  <a href="/toDoList/new">Nowa lista</a>
-  <br/><br/>
-  <table border="1" cellpadding="10">
-    <thead>
-    <tr>
-      <th>Id</th>
-      <th>Imię</th>
-      <th>Nazwisko</th>
-      <th>Nazwisko</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="toDoList : ${listToDoLists}">
-      <td th:text="${toDoList.id}">Id</td>
-      <td th:text="${toDoList.title}">Imię</td>
-      <td th:text="${toDoList.description}">Nazwisko</td>
-      <td th:text="${toDoList.listType}">Nazwisko</td>
-      <td>
-        <a th:href="@{'/toDoList/edit/' + ${toDoList.id}}">Edytuj</a>
-        <a th:href="@{'/toDoList/delete/' + ${toDoList.id}}">Usuń</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div layout:fragment="content">
+  <h1 class="text-center mt-3">Listy</h1>
+  <hr/>
+  <div class="row mt-1">
+    <div class="col-12 text-right">
+      <a class="btn btn-primary" href="/toDoList/new">Nowa lista</a>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Tytuł</th>
+          <th>Opis</th>
+          <th>Typ listy</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="toDoList : ${listToDoLists}">
+          <td th:text="${toDoList.id}">Id</td>
+          <td th:text="${toDoList.title}">Imię</td>
+          <td th:text="${toDoList.description}">Nazwisko</td>
+          <td th:text="${toDoList.listType}">Nazwisko</td>
+          <td>
+            <a class="btn btn-sm btn-secondary" th:href="@{'/toDoList/edit/' + ${toDoList.id}}">Edytuj</a>
+            &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-danger" th:href="@{'/toDoList/delete/' + ${toDoList.id}}">Usuń</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-</body>
 </html>

@@ -1,41 +1,31 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/main_layout.html}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       lang="pl">
-<head>
-  <meta charset="utf-8" />
-  <title>Dodaj listę</title>
-</head>
-<body>
-<div align="center">
-  <h1>Dodaj listę</h1>
-  <br />
-  <form action="#" th:action="@{/toDoList/save}" th:object="${toDoList}"
-        method="post">
-    <table border="0" cellpadding="10">
-      <tr>
-        <td>Tytuł:</td>
-        <td>
-          <input type="text" th:field="*{title}" />
-        </td>
-      </tr>
-      <tr>
-        <td>Opis:</td>
-        <td>
-          <input type="text" th:field="*{description}" />
-        </td>
-      </tr>
-      <tr>
-        <td>Typ:</td>
-        <td>
-          <input type="text" th:field="*{listType}" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Zapisz</button> </td>
-      </tr>
-    </table>
-  </form>
+<div layout:fragment="content">
+  <h1 class="text-center mt-3">Dodaj nową listę</h1>
+  <hr/>
+  <div class="row mt-1">
+    <div class="col-12">
+      <form action="#" th:action="@{/toDoList/save}" th:object="${list}}"
+            method="post">
+        <div class="form-group">
+          <label for="list-title">Tytuł</label>
+          <input class="form-control" type="text"
+                 th:field="*{title}" id="list-title" />
+        </div>
+        <div class="form-group">
+          <label for="list-description">Opis</label>
+          <input class="form-control" type="text" th:field="*{description}"
+                 id="list-description" />
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 text-right">
+          Zapisz
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
-</body>
 </html>
