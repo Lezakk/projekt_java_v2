@@ -18,14 +18,16 @@ public interface PositionMapper {
             @Mapping(target="description", source="entity.description"),
             @Mapping(target="created", source="entity.created"),
             @Mapping(target="modified", source="entity.modified"),
+            @Mapping(target="listId", source="entity.toDoList.id")
     })
-    PositionDTO toDoListToToDoListDTO(Position entity);
+    PositionDTO positionToPositionDTO(Position entity);
     @Mappings({
             @Mapping(target="id", source="dto.id"),
             @Mapping(target="title", source="dto.title"),
             @Mapping(target="description", source="dto.description"),
             @Mapping(target="created", source="dto.created"),
-            @Mapping(target="modified", source="dto.modified")
+            @Mapping(target="modified", source="dto.modified"),
+            @Mapping(target="toDoList.id", source="dto.listId")
     })
     Position positionDTOToPosition(PositionDTO dto);
     List<PositionDTO> map(Iterable<Position> toDoLists);

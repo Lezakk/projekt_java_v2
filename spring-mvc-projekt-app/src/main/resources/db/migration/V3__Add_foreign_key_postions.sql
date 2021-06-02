@@ -1,2 +1,2 @@
-alter table position_list add column toDoList_id integer;
-alter table position_list add constraint position_fk0 foreign key (toDoList_id) references list(id);
+alter table position_list add column to_do_list_id integer;
+alter table position_list add constraint position_fk0 foreign key (to_do_list_id) references list(id);

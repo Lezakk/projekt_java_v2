@@ -66,7 +66,7 @@ public class RestPositionController {
                     )
             );
             return new ResponseEntity<>(
-                    positionMapper.toDoListToToDoListDTO(
+                    positionMapper.positionToPositionDTO(
                             positionEntity
                     ),
                     HttpStatus.OK
