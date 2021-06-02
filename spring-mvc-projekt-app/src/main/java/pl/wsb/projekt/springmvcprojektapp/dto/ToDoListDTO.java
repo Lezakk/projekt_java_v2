@@ -1,8 +1,10 @@
 package pl.wsb.projekt.springmvcprojektapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import pl.wsb.projekt.springmvcprojektapp.model.Position;
 
 import java.util.Date;
+import java.util.Set;
 
 public class ToDoListDTO {
 
@@ -23,6 +25,17 @@ public class ToDoListDTO {
 
     @JsonProperty("modified")
     private Date modified;
+
+    @JsonProperty("positions")
+    private Set<Position> positions;
+
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }
 
     public Integer getId() {
         return id;

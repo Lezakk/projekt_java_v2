@@ -1,6 +1,8 @@
 package pl.wsb.projekt.springmvcprojektapp.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class Position {
     private Date modified;
     private ToDoList toDoList;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "toDoList_id")
     public ToDoList getToDoList() {
