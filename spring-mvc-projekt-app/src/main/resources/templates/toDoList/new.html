@@ -5,11 +5,11 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="pl">
 <div layout:fragment="content">
-  <h1 class="text-center mt-3">Dodaj nową listę</h1>
+  <h1 class="text-center mt-3">Edycja list</h1>
   <hr/>
   <div class="row mt-1">
     <div class="col-12">
-      <form action="#" th:action="@{/toDoList/save}" th:object="${list}}"
+      <form action="#" th:action="@{/toDoList/save}" th:object="${list}"
             method="post">
         <div class="form-group">
           <label for="list-title">Tytuł</label>
@@ -20,6 +20,11 @@
           <label for="list-description">Opis</label>
           <input class="form-control" type="text" th:field="*{description}"
                  id="list-description" />
+        </div>
+        <div class="form-group">
+          <label for="list-type">Typ listy</label>
+          <input class="form-control" type="text" th:field="*{listType}"
+                 id="list-type" />
         </div>
         <button type="submit" class="btn btn-primary mb-2 text-right">
           Zapisz

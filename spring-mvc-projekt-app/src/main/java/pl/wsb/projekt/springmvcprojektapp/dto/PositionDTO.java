@@ -21,6 +21,17 @@ public class PositionDTO {
     @JsonProperty("modified")
     private Date modified;
 
+    @JsonProperty("listId")
+    private Integer listId;
+
+    public Integer getListId() {
+        return listId;
+    }
+
+    public void setListId(Integer listId) {
+        this.listId = listId;
+    }
+
     public Integer getId() {
         return id;
     }

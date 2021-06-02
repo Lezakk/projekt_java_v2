@@ -17,7 +17,7 @@ public interface PositionMapper {
             @Mapping(target="title", source="entity.title"),
             @Mapping(target="description", source="entity.description"),
             @Mapping(target="created", source="entity.created"),
-            @Mapping(target="modified", source="entity.modified")
+            @Mapping(target="modified", source="entity.modified"),
     })
     PositionDTO toDoListToToDoListDTO(Position entity);
     @Mappings({

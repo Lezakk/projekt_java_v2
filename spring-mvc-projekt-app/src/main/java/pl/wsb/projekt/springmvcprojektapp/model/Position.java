@@ -13,6 +13,17 @@ public class Position {
     private String description;
     private Date created;
     private Date modified;
+    private ToDoList toDoList;
+
+    @ManyToOne
+    @JoinColumn(name = "toDoList_id")
+    public ToDoList getToDoList() {
+        return toDoList;
+    }
+
+    public void setToDoList(ToDoList toDoList) {
+        this.toDoList = toDoList;
+    }
 
     public Position() {
     }
