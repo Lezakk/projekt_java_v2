@@ -1,0 +1,6 @@
+package pl.wsb.projekt.springmvcprojektapp.model.enums;
+
+public enum ERole {
+    ROLE_USER,
+    ROLE_ADMIN
+}
