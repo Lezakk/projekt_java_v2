@@ -1,5 +1,6 @@
 package pl.wsb.projekt.springmvcprojektapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -19,6 +20,18 @@ public class ToDoList implements Serializable {
     private Date created;
     private Date modified;
     private Set<Position> positions = new HashSet<>();
+    private User user;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public ToDoList(Date created) {
         this.created = created;

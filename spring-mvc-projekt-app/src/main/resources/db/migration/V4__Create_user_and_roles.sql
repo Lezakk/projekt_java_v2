@@ -29,6 +29,4 @@ alter table user_role add constraint user_role_fk1 foreign key (role_id) referen
 insert into role (created, modified, name)
 values (now(), now(), "ROLE_USER");
 insert into role (created, modified, name)
-values (now(), now(), "ROLE_MODERATOR");
-insert into role (created, modified, name)
 values (now(), now(), "ROLE_ADMIN");

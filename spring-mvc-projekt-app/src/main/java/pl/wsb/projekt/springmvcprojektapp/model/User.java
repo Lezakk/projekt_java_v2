@@ -1,6 +1,8 @@
 package pl.wsb.projekt.springmvcprojektapp.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,6 +24,17 @@ public class User {
     private String password;
     private Date deleted;
     private Set<Role> roles = new HashSet<>();
+    private Set<ToDoList> toDoLists = new HashSet<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user")
+    public Set<ToDoList> getToDoLists() {
+        return toDoLists;
+    }
+
+    public void setToDoLists(Set<ToDoList> toDoLists) {
+        this.toDoLists = toDoLists;
+    }
 
     public User() {
     }

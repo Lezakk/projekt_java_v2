@@ -1,6 +1,7 @@
 package pl.wsb.projekt.springmvcprojektapp.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +14,7 @@ import pl.wsb.projekt.springmvcprojektapp.auth.dto.LoginRequest;
 import pl.wsb.projekt.springmvcprojektapp.auth.dto.*;
 import pl.wsb.projekt.springmvcprojektapp.auth.jwt.JwtUtils;
 import pl.wsb.projekt.springmvcprojektapp.auth.toDoListUserDetails;
+import pl.wsb.projekt.springmvcprojektapp.dto.ToDoListDTO;
 import pl.wsb.projekt.springmvcprojektapp.model.Role;
 import pl.wsb.projekt.springmvcprojektapp.model.User;
 import pl.wsb.projekt.springmvcprojektapp.model.enums.ERole;
@@ -45,6 +47,7 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

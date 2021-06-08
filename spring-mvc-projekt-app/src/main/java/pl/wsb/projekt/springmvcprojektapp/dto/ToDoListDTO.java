@@ -29,6 +29,17 @@ public class ToDoListDTO {
     @JsonProperty("positions")
     private Set<Position> positions;
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @JsonProperty("userId")
+    private Integer userId;
+
     public Set<Position> getPositions() {
         return positions;
     }

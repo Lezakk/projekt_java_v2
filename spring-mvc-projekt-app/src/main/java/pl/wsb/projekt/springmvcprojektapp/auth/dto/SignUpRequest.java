@@ -1,7 +1,10 @@
 package pl.wsb.projekt.springmvcprojektapp.auth.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jetbrains.annotations.NotNull;
+import pl.wsb.projekt.springmvcprojektapp.model.Position;
+import pl.wsb.projekt.springmvcprojektapp.model.ToDoList;
 
 import javax.validation.constraints.*;
 import java.util.Set;

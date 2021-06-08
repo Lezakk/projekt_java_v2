@@ -18,7 +18,8 @@ public interface ToDoListMapper {
             @Mapping(target="listType", source="entity.listType"),
             @Mapping(target="created", source="entity.created"),
             @Mapping(target="modified", source="entity.modified"),
-            @Mapping(target="positions", source="entity.positions")
+            @Mapping(target="positions", source="entity.positions"),
+            @Mapping(target="userId", source="entity.user.id")
     })
     ToDoListDTO toDoListToToDoListDTO(ToDoList entity);
     @Mappings({
@@ -28,7 +29,8 @@ public interface ToDoListMapper {
             @Mapping(target="listType", source="dto.listType"),
             @Mapping(target="created", source="dto.created"),
             @Mapping(target="modified", source="dto.modified"),
-            @Mapping(target="positions", source="dto.positions")
+            @Mapping(target="positions", source="dto.positions"),
+            @Mapping(target="user.id", source="dto.userId")
     })
     ToDoList toDoListDTOToToDoList(ToDoListDTO dto);
     List<ToDoListDTO> map(Iterable<ToDoList> toDoLists);
