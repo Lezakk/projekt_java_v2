@@ -23,6 +23,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public void save(User user) {
+        if (user.getModified() == null) {
+            user.setModified(new Date());
+        } //if
+        userRepository.save(user);
+    }
+
     public User find(Integer id) {
         return userRepository.findById(id).orElse(null);
     }

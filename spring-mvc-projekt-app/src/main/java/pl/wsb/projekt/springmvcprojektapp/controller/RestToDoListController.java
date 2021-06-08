@@ -5,8 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.wsb.projekt.springmvcprojektapp.dto.ToDoListDTO;
+import pl.wsb.projekt.springmvcprojektapp.dto.UserDTO;
 import pl.wsb.projekt.springmvcprojektapp.mapper.ToDoListMapper;
 import pl.wsb.projekt.springmvcprojektapp.model.ToDoList;
+import pl.wsb.projekt.springmvcprojektapp.model.User;
 import pl.wsb.projekt.springmvcprojektapp.service.ToDoListService;
 
 @CrossOrigin(origins = { "http://localhost:8080" })
@@ -28,6 +30,23 @@ public class RestToDoListController {
                             toDoListService.listAll()
                     ),
                     HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ToDoListDTO> findList(@PathVariable("id") Integer id)  {
+        try {
+            ToDoList toDoListEntity = toDoListService.find(id);
+            if (toDoListEntity == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } //if
+            return new ResponseEntity<>(
+                    toDoListMapper.toDoListToToDoListDTO(
+                            toDoListEntity
+                    ), HttpStatus.OK
             );
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

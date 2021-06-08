@@ -38,6 +38,23 @@ public class RestPositionController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PositionDTO> findList(@PathVariable("id") Integer id)  {
+        try {
+            Position positionEntity = positionService.find(id);
+            if (positionEntity == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } //if
+            return new ResponseEntity<>(
+                    positionMapper.positionToPositionDTO(
+                            positionEntity
+                    ), HttpStatus.OK
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/")
     public ResponseEntity<Void> createPosition(@RequestBody PositionDTO positionDTO) {
         try {

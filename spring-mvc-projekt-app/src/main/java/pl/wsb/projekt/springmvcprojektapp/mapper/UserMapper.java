@@ -23,6 +23,6 @@ public interface UserMapper {
             @Mapping(target="email", source="dto.email"),
             @Mapping(target="toDoLists", source="dto.lists"),
     })
-    User toDoListDTOToToDoList(UserDTO dto);
+    User userDTOToUser(UserDTO dto);
     List<UserDTO> map(Iterable<User> users);
 }
